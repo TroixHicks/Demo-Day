@@ -33,3 +33,42 @@ img{
   vertical-align: middle;
   width: 100%;
 }
+
+/* nav bar */
+
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: transparent
+ 
+}
+
+li {
+  float: left;
+}
+
+li a {
+  display: block;
+  color: black;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  /* position: relative;
+  left: 800px; */
+  font-size: 16px;
+}
+
+
+li a:hover {
+  background-color: lightblue;
+}
+
+ul.navbar-nav{
+  width: 100%;
+}
+
+.hide{
+  display: none;
+}
