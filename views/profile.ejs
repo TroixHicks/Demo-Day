@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>The Artist Lounge</title>
+
+    
+
+		<!-- Your file css -->
+		<link rel="stylesheet" href="style.css" />
+		 <script src="https://kit.fontawesome.com/d3cfcd7d11.js" crossorigin="anonymous"></script>
+   
+</head>
+
+<body>
+
+    <nav class=container>
+		<a class="navbar-brand font-weight-bolder mr-3" href="index.html"></a>
+		<div class="collapse navbar-collapse" id="navbarsDefault">
+			<ul class="navbar-nav mr-auto align-items-center">
+				
+			</ul>
+			<ul class="toplinks">
+				<li class="nav-item">
+				<a class="nav-link active" href="index.html">Home</a>
+				</li>
+				<li class="nav-item">
+				<a class="nav-link" href="post.html">My Posts</a>
+				</li>
+				<li class="nav-item">
+				<a class="nav-link" href="author.html"><span class="align-middle">Profile Name</span></a>
+				</li>
+				<li class="nav-item dropdown">
+				
+				</li>
+			</ul>
+
+			<div>
+				<h3> Profile</h3>
+				  <form action="/imageUpload" method="POST" enctype="multipart/form-data">
+					<% if(user.img.data){ %>
+					  <img src="data:image/<%=user.img.contentType%>;base64,
+					  <%=user.img.data.toString('base64')%>" class="profileImg">
+					<% } %>
+						
+				  <div>
+					<input type="file" id="image" name="image" value="" required>
+				  </div>
+						<button type="submit">UPLOAD</button>
+				  </form>
+	  
+	  
+					<% if (user.local.email) { %>
+				  <p>
+					<strong>id</strong>: <%= user._id %><br>
+					<strong>email</strong>: <%= user.local.email %><br>
+					<strong>password</strong>: <%= user.local.password %>
+				  </p>
+	  
+			</div>
+
+        </div>
+    </nav>    
+    <main role="main">
+        
+    
+    <section class="mt-4 mb-5">
+    <div class="container mb-4">
+    	<h1 class="font-weight-bold title">The Artist Lounge</h1>
+    	<div class="row">
+    		<nav class="navbar navbar-expand-lg navbar-light bg-white pl-2 pr-2">
+    		<span class="navbar-toggler-icon"></span>
+    		</button>
+    		<div class="bottom-links" id="navbarsExplore">
+    			<ul class="navbar-nav">
+    				<li class="nav-item">
+    				<a class="newset" href="#">Home</a>
+    				</li>
+    				<li class="nav-item">
+    				<a class="newset" href="#">My Feed</a>
+    				</li>
+    				<li class="nav-item">
+    				<a class="newset" href="#">Influences</a>
+    				</li>
+    				<li class="nav-item">
+    				<a class="newset" href="#">Influential Artists</a>
+    				</li>
+    				<li class="nav-item dropdown">
+    				<a class="nav-link dropdown-toggle" href="http://example.com" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">More</a>
+    				<div class="dropdown-menu shadow-lg" aria-labelledby="dropdown01">
+    					<a class="dropdown-item" href="#">Black Studies</a>
+    					<a class="dropdown-item" href="#">Contemporary Artists</a>
+						<a class="dropdown-item" href="#">Resources</a>
+    				
+    				</div>
+    				</li>
+    			</ul>
+    		</div>
+    		</nav>
+    	</div>
+    </div>
+    <div class="row">
+		<div class="column">
+	       <section>
+			  <img src="https://64.media.tumblr.com/e61b1ada476f2bf4a0d591d6f186d516/tumblr_natyjguzxU1r54v1wo1_540.jpg">
+			  <h3> Image Title:</h3>
+			  <h4> Description</h4>
+			  <h5> Source</h5>
+		  </section>
+		  <section>
+				<img src="https://64.media.tumblr.com/720703cf795e5105f30bb5b353de9bdc/c97f6bf869bc21b4-1c/s1280x1920/5aebedcbb1c41999f335d0b0cfec9c9df8a27a4f.png">
+				<h3> Image Title:</h3>
+				<h4> Description</h4>
+				<h5> Source</h5>
+		   </section>
+		   <section>
+				<img src="https://64.media.tumblr.com/1a01b9a0437549af50f61abe1a4bd581/ed9ec41c7c5d1bca-c6/s640x960/987fe52c3158c948da438a3f849a9d574cbf626a.jpg">
+				<h3> Image Title:</h3>
+				<h4> Description</h4>
+				<h5> Source</h5>
+	        </section>
+			<section>
+				<img src="https://64.media.tumblr.com/97b45712e44679aefb59b0deb090fbcb/tumblr_mzm11308xx1s0w87fo1_500.jpg">
+				<h3> Image Title:</h3>
+				<h4> Description</h4>
+				<h5> Source</h5>
+	        </section>
+		    <section>
+				<img src="https://64.media.tumblr.com/704213707608909b6c02021bcc86fa2a/1991be4a62bca27f-e8/s1280x1920/b71e70fb39a17f92091750687eb79cd4eeefae20.jpg">
+				<h3> Image Title:</h3>
+				<h4> Description</h4>
+				<h5> Source</h5>
+	        </section>
+	
+		</div>
+		<div class="column">
+			<section>
+				<img src="https://64.media.tumblr.com/9df9c158a98359e89605eef1d80594eb/tumblr_novjdddRFy1qe0fxmo1_1280.png">
+				<h3> Image Title:</h3>
+				<h4> Description</h4>
+				<h5> Source</h5>
+	        </section>
+
+			<section>
+				<img src="https://64.media.tumblr.com/ea6ab3dbf81d162c1f5c2e01a22d8411/a03fc071ad6b80f2-df/s1280x1920/3e2681f203534e3bd8b1a16d7a5cf7e80ddec93c.jpg">
+				<h3> Image Title:</h3>
+				<h4> Description</h4>
+				<h5> Source</h5>
+	        </section>
+		    
+			<section>
+				<img src="https://64.media.tumblr.com/7553056357c67157849a2efee9b417e6/2d93566a8c698b16-40/s1280x1920/199344788ddabf1377838610173641db078b39f2.jpg">
+				<h3> Image Title:</h3>
+				<h4> Description</h4>
+				<h5> Source</h5>
+	        </section>
+			<section>
+				<img src="https://64.media.tumblr.com/0229ee9718ff52bd2a0bdac43b44e7a6/48b1bddf129a85e1-c5/s1280x1920/da3fa34fe9d4d8f59c305418ea1819b673364b58.jpg">
+				<h3> Image Title:</h3>
+				<h4> Description</h4>
+				<h5> Source</h5>
+	        </section>
+		</div>
+		<div class="column">
+			<section>
+				<img src="https://64.media.tumblr.com/047e7ba092050489893b5fc7e3908098/48a9fbaa3230e716-84/s540x810/3c8909aa2b2e19b5c6558fde307f2857093eb369.gifv">
+				<h3> Image Title:</h3>
+				<h4> Description</h4>
+				<h5> Source</h5>
+	        </section>
+			<section>
+				<img src="https://64.media.tumblr.com/8c1adcaf0f1c7eec6b6fa2a8787694bb/d71883cb46aa34ac-14/s640x960/53ca77a0807e76e0f8e207044960b98c30649c3b.jpg">
+				<h3> Image Title:</h3>
+				<h4> Description</h4>
+				<h5> Source</h5>
+	        </section>
+			<section>
+				<img src="https://64.media.tumblr.com/7a60eaa6706f32bfaa08ee5a73b5270c/2d20902f66356290-15/s640x960/3622315a42e73dca982c9193666666fd89bbc967.jpg">
+				<h3> Image Title:</h3>
+				<h4> Description</h4>
+				<h5> Source</h5>
+	        </section>
+			<section>
+				<img src="https://64.media.tumblr.com/79c287e1e4fa08f38a3bfd442275dafc/296420cd322b07c4-aa/s1280x1920/ef4a088bf7352113de8be889c15124f4567d3d34.jpg">
+				<h3> Image Title:</h3>
+				<h4> Description</h4>
+				<h5> Source</h5>
+	        </section>
+			<section>
+				<img src="https://64.media.tumblr.com/f6ce1d6d93910b759b96f665b7049fe8/73930297fbc4b02d-37/s1280x1920/0ecb186ab9cde13f329ee5a9f869cb4d8230d0ae.jpg">
+				<h3> Image Title:</h3>
+				<h4> Description</h4>
+				<h5> Source</h5>
+	        </section>
+		  
+		</div>
+	  </div>
+
+ 
+    
+	
+</body>
+    
+</html>
