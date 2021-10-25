@@ -1,7 +1,35 @@
-body{
-  padding-top:80px;
-  word-wrap:break-word;
+* {
+  box-sizing: border-box;
 }
+
+
+body{
+  margin-left: 5%;
+  margin-right: 5%;
+  font-family: monospace;
+}
+
+
 img{
-  height: 200px;
+  width:30em;
+}
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 10 40px;
+}
+
+/* Create four equal columns that sits next to each other */
+.column {
+  flex: 25%;
+  max-width: 25%;
+  padding: 0 4px;
+  padding-left: 20px;
+}
+
+.column img {
+  margin-top: 8px;
+  vertical-align: middle;
+  width: 100%;
 }
