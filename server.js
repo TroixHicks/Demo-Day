@@ -4,11 +4,13 @@
 // get all the tools we need
 var express  = require('express');
 var app      = express();
-var port     = process.env.PORT || 8080;
+var port     = process.env.PORT || 8000;
 const MongoClient = require('mongodb').MongoClient
 var mongoose = require('mongoose');
 var passport = require('passport');
 var flash    = require('connect-flash');
+var ObjectId = require('mongodb').ObjectId
+var multer = require('multer')
 
 var morgan       = require('morgan');
 var cookieParser = require('cookie-parser');
@@ -23,7 +25,7 @@ var db
 mongoose.connect(configDB.url, (err, database) => {
   if (err) return console.log(err)
   db = database
-  require('./app/routes.js')(app, passport, db);
+  require('./app/routes.js')(app, passport, db, multer, ObjectId);
 }); // connect to our database
 
 require('./config/passport')(passport); // pass passport for configuration

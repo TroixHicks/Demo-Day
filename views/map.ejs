@@ -1,0 +1,153 @@
+<!doctype html>
+<html>
+
+<head>
+    <title>21 Savage Fan Site</title>
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+        #map {
+            height: 1000px;
+            width: 100%
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+
+        <div class="page-header text-center">
+            <h1>Google Map</h1>
+            <a href="/feed">Feed</a>
+            <a href="/profile">Profile</a>
+            <a href="/logout" class="btn btn-default btn-sm">Logout</a>
+        </div>
+
+
+
+
+        <div id="map">
+            <div>
+                <h3> My Google Map</h3>
+
+                <script>
+                    function initMap() {
+                        let options = {
+                            zoom: 8,
+                            center: { lat: 39.9526, lng: -75.1652 }
+                        }
+                        let map = new google.maps.Map(document.getElementById('map'), options)
+
+                        fetch('locations', {
+                                method: 'get',
+                                headers: { 'Content-Type': 'application/json' },
+                               
+                            })
+                                .then(response => {
+                                    console.log(response)
+                                    if (response.ok) return response.json()
+                                    
+                                })
+                                .then(data => {
+                                    console.log(data)
+                                    if(data.locations.length===0){
+                                        let newmarker = new google.maps.Marker({
+                                       position: { lat: 39.9526, lng: -75.1652 },
+                                       map: map
+                                        
+
+                                    }) 
+                                  } else {
+                                      console.log(data)
+                                      for(let i = 0; i < data.locations.length; i++){
+                                        let newmarker = new google.maps.Marker({
+                                        position: data.locations[i].location,
+                                        map: map,
+                                        mapTypeId: google.maps.MapTypeId.ROADMAP,
+                                        draggable: true,
+                                        title: "Drag me!",
+                                        content: '<h1>Photography Location</h1>'
+
+
+
+                                });
+                                      }
+
+                                  }
+                                })
+                            
+
+                       
+
+                        let infowindow = new google.maps.InfoWindow({
+                            content: 'Photography Location'
+                        })
+
+                        // marker.addListener('click', function () {
+                        //     InfoWindow.open(map, marker)
+                        // })
+                        google.maps.event.addListener(map, 'click', function (event) {
+                            placeMarker(event.latLng);
+                        });
+
+                        google.maps.event.addListener(map, 'click', function (event) {
+                            placeMarker(event.latLng);
+                        });
+
+                        function placeMarker(location) {
+                            let marker = new google.maps.Marker({
+                                position: location,
+                                map: map,
+                                mapTypeId: google.maps.MapTypeId.ROADMAP,
+                                draggable: true,
+                                title: "Drag me!",
+                                content: '<h1>Photography Location</h1>'
+
+
+
+                            });
+
+                            fetch('map', {
+                                method: 'post',
+                                headers: { 'Content-Type': 'application/json' },
+                                body: JSON.stringify({
+
+                                    'location': location
+                                })
+                            })
+                                .then(response => {
+                                    if (response.ok) return response.json()
+                                })
+                                .then(data => {
+                                    console.log(data)
+                                    map.setCenter(location);
+                                    
+                                })
+                            };
+
+                        
+                    }
+                     
+
+
+
+
+
+                </script>
+
+
+<script type="text/javascript"
+src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB0vrbaqfRBzXOFbEGmsNORTWRdG3zNFBI&libraries=places">
+</script>
+                <script
+                    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB0vrbaqfRBzXOFbEGmsNORTWRdG3zNFBI&channel=2&callback=initMap"
+                    async defer></script>
+            </div>
+
+            <script src="main.js"></script>
+
+</body>
+
+</html>

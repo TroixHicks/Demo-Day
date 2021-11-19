@@ -7,6 +7,7 @@ body{
   margin-left: 5%;
   margin-right: 5%;
   font-family: monospace;
+  background-color: aliceblue !important;
 }
 
 
@@ -20,13 +21,11 @@ img{
   padding: 10 40px;
 }
 
-/* Create four equal columns that sits next to each other */
-.column {
-  flex: 25%;
-  max-width: 25%;
-  padding: 0 4px;
-  padding-left: 20px;
+nav.navbar{
+  width: 100%;
 }
+/* Create four equal columns that sits next to each other */
+
 
 .column img {
   margin-top: 8px;
@@ -71,4 +70,39 @@ ul.navbar-nav{
 
 .hide{
   display: none;
+}
+
+#img{
+  height:300px;
+  width: 150%;
+  
+}
+
+.card-title{
+  position: relative;
+  top: 5px;
+  left:100px;
+  border: black;
+  
+  
+}
+
+.card-text{
+  position: relative;
+  left: 100px;
+  width: 60%;
+  
+}
+
+.message{
+  list-style:none;
+}
+
+
+.card-mb-3{
+  box-shadow: 5px 5px rgb(163, 163, 211), 10px 10px rgb(242, 240, 178), 15px 15px rgb(218, 166, 225) !important;
+  background-color: aliceblue !important;
+  padding-left: 10px;
+  margin-left:25px;
+  border: dotted black;
 }
