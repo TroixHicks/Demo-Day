@@ -41,45 +41,72 @@
                         let map = new google.maps.Map(document.getElementById('map'), options)
 
                         fetch('locations', {
-                                method: 'get',
-                                headers: { 'Content-Type': 'application/json' },
-                               
+                            method: 'get',
+                            headers: { 'Content-Type': 'application/json' },
+
+                        })
+                            .then(response => {
+                                console.log(response)
+                                if (response.ok) return response.json()
+
                             })
-                                .then(response => {
-                                    console.log(response)
-                                    if (response.ok) return response.json()
-                                    
-                                })
-                                .then(data => {
+                            .then(data => {
+                                console.log(data)
+                                if (data.locations.length === 0) {
+                                    let newmarker = new google.maps.Marker({
+                                        position: { lat: 39.9526, lng: -75.1652 },
+                                        map: map
+                                    })
+                                } else {
                                     console.log(data)
-                                    if(data.locations.length===0){
+                                    for (let i = 0; i < data.locations.length; i++) {
                                         let newmarker = new google.maps.Marker({
-                                       position: { lat: 39.9526, lng: -75.1652 },
-                                       map: map
-                                        
-
-                                    }) 
-                                  } else {
-                                      console.log(data)
-                                      for(let i = 0; i < data.locations.length; i++){
+                                            position: data.locations[i].location,
+                                            map: map,
+                                            mapTypeId: google.maps.MapTypeId.ROADMAP,
+                                            draggable: true,
+                                            title: "Drag me!",
+                                            content: '<h1>Photography Location</h1>'
+                                        });
+                                    }
+                                    for (let j = 0; j < data.photos.length; j++) {
                                         let newmarker = new google.maps.Marker({
-                                        position: data.locations[i].location,
-                                        map: map,
-                                        mapTypeId: google.maps.MapTypeId.ROADMAP,
-                                        draggable: true,
-                                        title: "Drag me!",
-                                        content: '<h1>Photography Location</h1>'
+
+                                            position: data.photos[j].location,
+                                            icon: {
+                                                // add image url instead of binary
+                                                url: 'https://image.pngaaa.com/505/3260505-middle.png',
+                                                scaledSize: new window.google.maps.Size(50, 50)
+                                            },
+                                            map: map,
+                                            mapTypeId: google.maps.MapTypeId.ROADMAP,
+                                            draggable: true,
+                                            title: "photo pin",
+                                            content: '<h1>Photography Location</h1>'
+
+
+                                        });
+                                        const infowindow = new google.maps.InfoWindow({
+                                            content: `<img src="data:image/${data.photos[j].img.contentType};base64,
+                     ${data.photos[j].img.data.toString('base64')}" class="card-img" alt="..." id="img">`,
+                                        });
 
 
 
-                                });
-                                      }
+                                        newmarker.addListener("click", () => {
+                                            infowindow.open({
+                                                anchor: newmarker,
+                                                map,
+                                                shouldFocus: false,
+                                            });
+                                        });
 
-                                  }
-                                })
-                            
+                                    }
+                                }
+                            })
 
-                       
+
+
 
                         let infowindow = new google.maps.InfoWindow({
                             content: 'Photography Location'
@@ -123,13 +150,13 @@
                                 .then(data => {
                                     console.log(data)
                                     map.setCenter(location);
-                                    
-                                })
-                            };
 
-                        
+                                })
+                        };
+
+
                     }
-                     
+
 
 
 
@@ -138,9 +165,9 @@
                 </script>
 
 
-<script type="text/javascript"
-src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB0vrbaqfRBzXOFbEGmsNORTWRdG3zNFBI&libraries=places">
-</script>
+                <script type="text/javascript"
+                    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB0vrbaqfRBzXOFbEGmsNORTWRdG3zNFBI&libraries=places">
+                    </script>
                 <script
                     src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB0vrbaqfRBzXOFbEGmsNORTWRdG3zNFBI&channel=2&callback=initMap"
                     async defer></script>

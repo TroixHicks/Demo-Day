@@ -46,11 +46,15 @@ module.exports = function (app, passport, db, multer, ObjectId) {
 
   app.get('/locations', function (req, res) {
     db.collection('map').find().toArray((err, result) => {
-      console.log(result)
-      if (err) return console.log(err)
-      res.send( {
-        user: req.user,
-        locations: result
+      db.collection('posts').find().toArray((err, photos) => {
+        console.log(result)
+        if (err) return console.log(err)
+        res.send( {
+          user: req.user,
+          locations: result,
+          photos: photos
+
+        })
       })
     })
   });
