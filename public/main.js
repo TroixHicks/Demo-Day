@@ -1,68 +1,13 @@
 var thumbUp = document.getElementsByClassName("fa-thumbs-up");
-var trash = document.getElementsByClassName("fa-trash");
+var trash = document.getElementsByClassName("fa-minus-circle");
 var thumbDown = document.getElementsByClassName("fa-thumbs-down");
 var bookmark = document.getElementsByClassName("fa-bookmark");
-let button = document.querySelector('#submit')
-console.log(thumbUp)
-
-
-
 
 
   // <!-- Set autocomplete address input -->
   let gpaInput = document.getElementById("enterLocation")
-  
   let autocomplete = new google.maps.places.Autocomplete(gpaInput);
 
-
-
-  // <!-- SEARCH BUTTON EVENT LISTENER-->
-  button.addEventListener("click", event => {
-      event.preventDefault();
-      let caption =  document.getElementById("caption").value
-      let photo =  document.getElementById("photo").value
-      let array = photo.split(`fakepath`)
-      photo = array[1].substring(1)
-      // <!-- FETCH USER COORDINATES -->
-      let userAddress = gpaInput.value;
-      console.log(userAddress)
-      console.log(caption)
-      console.log(photo)
-      let queryAddress = userAddress.split(' ').join('+')
-      fetch(
-              `https://maps.googleapis.com/maps/api/geocode/json?address=${queryAddress}&key=AIzaSyB0vrbaqfRBzXOFbEGmsNORTWRdG3zNFBI`
-          )
-          
-          .then(res => res.json())
-          .then(function (result) {
-            console.log(result)
-              let userCoordinates = {
-                  lat: result.results[0].geometry.location.lat,
-                  lng: result.results[0].geometry.location.lng
-              }
-              console.log(userCoordinates)
-
-              fetch('makePost', {
-                method: 'post',
-                headers: {'Content-Type': 'application/json'},
-                body: JSON.stringify({
-              
-                  'caption':caption,
-                  'photo': photo,
-                  'lat':userCoordinates.lat,
-                  'lng': userCoordinates.lng
-                })
-              })
-              .then(response => {
-                if (response.ok) return response.json()
-              })
-             
-              
-          })
-          .catch(function (err) {
-              console.error(err);
-          });
-  });
 
 Array.from(bookmark).forEach(function(element) {
   element.addEventListener('click', function(){

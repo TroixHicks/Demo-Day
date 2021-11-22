@@ -35,7 +35,7 @@
                 <script>
                     function initMap() {
                         let options = {
-                            zoom: 8,
+                            zoom: 11,
                             center: { lat: 39.9526, lng: -75.1652 }
                         }
                         let map = new google.maps.Map(document.getElementById('map'), options)
@@ -52,107 +52,104 @@
                             })
                             .then(data => {
                                 console.log(data)
-                                if (data.locations.length === 0) {
-                                    let newmarker = new google.maps.Marker({
-                                        position: { lat: 39.9526, lng: -75.1652 },
-                                        map: map
-                                    })
-                                } else {
-                                    console.log(data)
-                                    for (let i = 0; i < data.locations.length; i++) {
-                                        let newmarker = new google.maps.Marker({
-                                            position: data.locations[i].location,
-                                            map: map,
-                                            mapTypeId: google.maps.MapTypeId.ROADMAP,
-                                            draggable: true,
-                                            title: "Drag me!",
-                                            content: '<h1>Photography Location</h1>'
-                                        });
-                                    }
+
                                     for (let j = 0; j < data.photos.length; j++) {
-                                        let newmarker = new google.maps.Marker({
+                                        let userAddress = data.photos[j].address;
+                                        let queryAddress = userAddress.split(' ').join('+')
+                                        let img = data.photos[j].img.data
+                                        let userCoordinates
+                                        fetch(
+                                            `https://maps.googleapis.com/maps/api/geocode/json?address=${queryAddress}&key=AIzaSyB0vrbaqfRBzXOFbEGmsNORTWRdG3zNFBI`
+                                        )
 
-                                            position: data.photos[j].location,
-                                            icon: {
-                                                // add image url instead of binary
-                                                url: 'https://image.pngaaa.com/505/3260505-middle.png',
-                                                scaledSize: new window.google.maps.Size(50, 50)
-                                            },
-                                            map: map,
-                                            mapTypeId: google.maps.MapTypeId.ROADMAP,
-                                            draggable: true,
-                                            title: "photo pin",
-                                            content: '<h1>Photography Location</h1>'
+                                            .then(res => res.json())
+                                            .then(function (result) {
+                                                let locations = []
 
-
-                                        });
-                                        const infowindow = new google.maps.InfoWindow({
-                                            content: `<img src="data:image/${data.photos[j].img.contentType};base64,
-                     ${data.photos[j].img.data.toString('base64')}" class="card-img" alt="..." id="img">`,
-                                        });
+                                                let lat = result.results[0].geometry.location.lat
+                                                let lng = result.results[0].geometry.location.lng
+                                                let photoData = [img, lat, lng]
+                                                locations.push(photoData)
 
 
+                                                console.log('locations', locations);
 
-                                        newmarker.addListener("click", () => {
-                                            infowindow.open({
-                                                anchor: newmarker,
-                                                map,
-                                                shouldFocus: false,
+                                                var infowindow = new google.maps.InfoWindow();
+
+                                                var marker, i;
+
+                                                for (i = 0; i < locations.length; i++) {
+
+                                                    marker = new google.maps.Marker({
+                                                        position: new google.maps.LatLng(locations[i][1], locations[i][2]),
+                                                        map: map,
+                                                        icon: {
+                                                        // add image url instead of binary
+                                                        scaledSize: new window.google.maps.Size(50, 50)
+                                                        },
+                                                        mapTypeId: google.maps.MapTypeId.ROADMAP,
+                                                        draggable: false,
+                                                        title: "photo pin",
+                                                        content: '<h1>Photography Location</h1>'
+                                                    });
+
+                                                    google.maps.event.addListener(marker, 'click', (function (marker, i) {
+                                                        return function () {
+                                                            infowindow.setContent(
+                                                                `<img src="data:image/${data.photos[j].img.contentType};base64,${data.photos[j].img.data.toString('base64')}" class="card-img" alt="..." id="img">` +
+                                                                `<p>${data.photos[j].caption}</p>`
+                                                                );
+                                                            infowindow.open(map, marker);
+                                                        }
+                                                    })(marker, i));
+                                                }
                                             });
-                                        });
-
                                     }
-                                }
+                                
                             })
 
 
 
 
-                        let infowindow = new google.maps.InfoWindow({
-                            content: 'Photography Location'
-                        })
+      
+                        // google.maps.event.addListener(map, 'click', function (event) {
+                        //     placeMarker(event.latLng);
+                        // });
 
-                        // marker.addListener('click', function () {
-                        //     InfoWindow.open(map, marker)
-                        // })
-                        google.maps.event.addListener(map, 'click', function (event) {
-                            placeMarker(event.latLng);
-                        });
+                        // google.maps.event.addListener(map, 'click', function (event) {
+                        //     placeMarker(event.latLng);
+                        // });
 
-                        google.maps.event.addListener(map, 'click', function (event) {
-                            placeMarker(event.latLng);
-                        });
-
-                        function placeMarker(location) {
-                            let marker = new google.maps.Marker({
-                                position: location,
-                                map: map,
-                                mapTypeId: google.maps.MapTypeId.ROADMAP,
-                                draggable: true,
-                                title: "Drag me!",
-                                content: '<h1>Photography Location</h1>'
+                        // function placeMarker(location) {
+                        //     let marker = new google.maps.Marker({
+                        //         position: location,
+                        //         map: map,
+                        //         mapTypeId: google.maps.MapTypeId.ROADMAP,
+                        //         draggable: true,
+                        //         title: "Drag me!",
+                        //         content: '<h1>Photography Location</h1>'
 
 
 
-                            });
+                        //     });
 
-                            fetch('map', {
-                                method: 'post',
-                                headers: { 'Content-Type': 'application/json' },
-                                body: JSON.stringify({
+                        //     fetch('map', {
+                        //         method: 'post',
+                        //         headers: { 'Content-Type': 'application/json' },
+                        //         body: JSON.stringify({
 
-                                    'location': location
-                                })
-                            })
-                                .then(response => {
-                                    if (response.ok) return response.json()
-                                })
-                                .then(data => {
-                                    console.log(data)
-                                    map.setCenter(location);
+                        //             'location': location
+                        //         })
+                        //     })
+                        //         .then(response => {
+                        //             if (response.ok) return response.json()
+                        //         })
+                        //         .then(data => {
+                        //             console.log(data)
+                        //             map.setCenter(location);
 
-                                })
-                        };
+                        //         })
+                        // };
 
 
                     }

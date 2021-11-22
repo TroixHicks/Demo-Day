@@ -1,3 +1,5 @@
+const { runInNewContext } = require('vm');
+
 module.exports = function (app, passport, db, multer, ObjectId) {
   const fs = require('fs')
   const path = require('path')
@@ -121,7 +123,7 @@ module.exports = function (app, passport, db, multer, ObjectId) {
     const obj = {
 
 
-      data: fs.readFileSync(path.join(__dirname + '/../public/images/uploads/' + req.body.photo)),
+      data: fs.readFileSync(path.join(__dirname + '/../public/images/uploads/' + req.file.filename)),
       contentType: 'image/png'
 
     }
@@ -130,14 +132,12 @@ module.exports = function (app, passport, db, multer, ObjectId) {
       caption: req.body.caption, 
       desc: req.body.desc, 
       img: obj, 
-      lat: req.body.lat,
-      lng: req.body.lng,
+      address: req.body.address,
       postedBy: user, 
       comments: [] }
       , (err, result) => {
         if (err) return console.log(err)
         console.log('saved to database')
-        res.send(200)
         res.redirect('/profile')
       })
   })

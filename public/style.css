@@ -106,3 +106,19 @@ ul.navbar-nav{
   margin-left:25px;
   border: dotted black;
 }
+
+.fa-bookmark{
+  position: relative;
+  left: 280px;
+}
+
+.profileposts{
+  margin-left: 100px;
+  padding-left: 100px;
+  
+}
+
+h1.center{
+  position: relative;
+  left: 350px;
+}
