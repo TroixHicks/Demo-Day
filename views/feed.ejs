@@ -61,12 +61,11 @@
 
     <div class="mt-4 mb-5">
     <div class="container mb-4">
-    	<h1 class="font-weight-bold title">The Artist Lounge</h1>
+    	<h1 class="title">The Artist Lounge</h1>
     	<div class="row">
     		<nav class="navbar navbar-expand-lg navbar-light bg-white pl-2 pr-2">
     		<span class="navbar-toggler-icon"></span>
     		</button>
-    		<div class="bottom-links" id="navbarsExplore">
     			<ul class="navbar-nav">
     				<li class="nav-item">
     				<a class="newset" href="#">Home</a>
@@ -115,25 +114,26 @@
                   <a class="hide" href="/page/<%= posts[i].postedBy %>"> <%= posts[i].postedBy %></a>
                 </a>
 
-
-                <div class="card-mb-3" style="max-width: 550px;" id="contains">
-                  <div class="row no-gutters">
-                    <div class="col-md-4">
-                    <img src="data:image/<%=posts[i].img.contentType%>;base64,
-                     <%=posts[i].img.data.toString('base64')%>" class="card-img" alt="..." id="img">
-                    </div>
-                    <div class="col-md-8">
-                      <div class="card-body">
-						<i data-id="<%=posts[i]._id%>" class="fas fa-bookmark"></i>
-                        <h5 class="card-title"><%= posts[i].caption %></h5>
-                        <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-						
-						
-                        
-                      </div>
-                    </div>
-                  </div>
-                </div>
+				<section class="middle">
+					<div class="card-mb-3" style="max-width: 550px;" id="contains">
+					<div class="row no-gutters">
+						<div class="col-md-4">
+						<img src="data:image/<%=posts[i].img.contentType%>;base64,
+						<%=posts[i].img.data.toString('base64')%>" class="card-img" alt="..." id="img">
+						</div>
+						<div class="col-md-8">
+						<div class="card-body">
+							<i data-id="<%=posts[i]._id%>" class="fas fa-bookmark"></i>
+							<h5 class="card-title"><%= posts[i].caption %></h5>
+							<p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+							
+							
+							
+						</div>
+						</div>
+					</div>
+					</div>
+				</section>
 
 
 

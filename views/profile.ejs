@@ -20,9 +20,9 @@
     <div class="row">
 
         <!-- LOCAL INFORMATION -->
-        <div class="col-sm-6">
-            <!-- <div class="well">
-                <h3><span class="fa fa-user"></span> Local</h3>
+        <div class="col-sm-6" class="hide">
+            <div class="well" class="hide">
+                <h3><span class="hide" class="fa fa-user"></span> Local</h3>
 
                 <% if (user.local.email) { %>
                     <p>
@@ -36,7 +36,7 @@
                     <a href="/connect/local" class="btn btn-default">Connect Local</a>
                 <% } %>
 
-            </div> -->
+            </div>
         </div>
         <div class="col-sm-6">
           <h3>Posts</h3>
@@ -48,7 +48,7 @@
                 <img src="<%= posts[i].img %>" alt="">
               
               </a>  
-              <button> DELETE </button>
+              
             </li>
           <% } %>
           </ul>
@@ -66,21 +66,25 @@
 
         <h1 class="center"> Bookmarked Posts</h1>
         <ul class="messages">
-        <% for(var i=0; i<bookmarks.length; i++) {%>
-          <li class="profileposts">
-           
-              <h4><%= bookmarks[i].caption %></h4>
-              <img src="data:image/<%=bookmarks[i].img.contentType%>;base64,
-              <%=bookmarks[i].img.data.toString('base64')%>" class="card-img" alt="..." id="img">
-              <i class="fas fa-trash"></i>
-              <i class="fas fa-minus-circle"></i>
-              
+        <div class="card-body">
+          <% for(var i=0; i<bookmarks.length; i++) {%>
+            <li class="messages">
             
-            </a>  
-           
-          </li>
-        <% } %>
-        </ul>
+                <h4><%= bookmarks[i].caption %></h4>
+                <img src="data:image/<%=bookmarks[i].img.contentType%>;base64,
+                <%=bookmarks[i].img.data.toString('base64')%>" class="card-img" alt="..." id="img">
+                
+                
+              
+              </a>  
+            
+            </li>
+          <% } %>
+          </ul>
+        </div>
+
+
+        
 
         
 </div>

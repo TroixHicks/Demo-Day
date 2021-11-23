@@ -4,9 +4,6 @@ var thumbDown = document.getElementsByClassName("fa-thumbs-down");
 var bookmark = document.getElementsByClassName("fa-bookmark");
 
 
-  // <!-- Set autocomplete address input -->
-  let gpaInput = document.getElementById("enterLocation")
-  let autocomplete = new google.maps.places.Autocomplete(gpaInput);
 
 
 Array.from(bookmark).forEach(function(element) {
@@ -93,3 +90,7 @@ Array.from(trash).forEach(function(element) {
         })
       });
 });
+
+
+let gpaInput = document.getElementById("enterLocation")
+let autocomplete = new google.maps.places.Autocomplete(gpaInput)

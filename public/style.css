@@ -8,9 +8,15 @@ body{
   margin-right: 5%;
   font-family: monospace;
   background-color: aliceblue !important;
+  background-image: url(background3.jpeg);
+  background-size: cover;
 }
 
-
+h1.title{
+  color: white;
+  text-align: center;
+  font-size: 60px;
+}
 img{
   width:30em;
 }
@@ -66,10 +72,12 @@ li a:hover {
 
 ul.navbar-nav{
   width: 100%;
+  text-align: center;
 }
 
 .hide{
   display: none;
+  visibility: hidden;
 }
 
 #img{
@@ -100,11 +108,11 @@ ul.navbar-nav{
 
 
 .card-mb-3{
-  box-shadow: 5px 5px rgb(163, 163, 211), 10px 10px rgb(242, 240, 178), 15px 15px rgb(218, 166, 225) !important;
+  box-shadow: 5px 5px rgb(93, 65, 134), 10px 10px rgb(42, 98, 51), 15px 15px rgb(81, 68, 154) !important;
   background-color: aliceblue !important;
   padding-left: 10px;
   margin-left:25px;
-  border: dotted black;
+  /* border: dotted black; */
 }
 
 .fa-bookmark{
@@ -122,3 +130,9 @@ h1.center{
   position: relative;
   left: 350px;
 }
+
+.middle{
+  position: relative;
+  left: 70px;
+}
+
