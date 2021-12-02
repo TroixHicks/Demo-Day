@@ -2,8 +2,35 @@ var thumbUp = document.getElementsByClassName("fa-thumbs-up");
 var trash = document.getElementsByClassName("fa-minus-circle");
 var thumbDown = document.getElementsByClassName("fa-thumbs-down");
 var bookmark = document.getElementsByClassName("fa-bookmark");
+var heart = document.getElementsByClassName("fa-heart");
 
 
+Array.from(heart).forEach(function(element) {
+  element.addEventListener('click', function(){
+    console.log(this.parentNode.childNodes)
+  
+    const likes = parseInt(this.parentNode.childNodes[5].innerText)
+
+    
+    const postId= this.parentNode.childNodes[1].dataset.id
+    console.log(postId)
+    fetch('liked', {
+      method: 'put',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify({
+        'postId':postId,
+        'likes': likes
+      })
+    })
+    .then(response => {
+      if (response.ok) return response.json()
+    })
+    .then(data => {
+      console.log(data)
+      window.location.reload(true)
+    })
+  });
+});
 
 
 Array.from(bookmark).forEach(function(element) {

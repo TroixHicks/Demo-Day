@@ -1,99 +1,125 @@
 <!doctype html>
 <html>
+
 <head>
-    <title>21 Savage Fan Site</title>
+    <title>The Artist Lounge</title>
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
     <link rel="stylesheet" href="style.css">
+    <script src="https://kit.fontawesome.com/d3cfcd7d11.js" crossorigin="anonymous"></script>
 
-    
+
 </head>
+
 <body>
-<div class="container">
+    <section class="main">
+        <div class="mt-4 mb-5">
+            <div class="container mb-4">
+                <div class="row">
+                    <nav class="navbar navbar-expand-lg navbar-light bg-white pl-2 pr-2">
+                        </button>
+                        <ul class="navbar-nav">
+                            <div id="app">
+                                <div id="wrapper">
+                                    <li class="nav-item">
+                                        <a class="newset" href=/feed><i class="fas fa-home"></i></a>
 
-    <div class="page-header text-center">
-        <h1></span> Profile Page</h1>
-        <a href="/feed">Feed</a>
-        <a href="/logout" class="btn btn-default btn-sm">Logout</a>
-    </div>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="newset" href="/profile"><i class="fas fa-camera-retro"></i></a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="newset" href="/map"><i class="fas fa-map-marker-alt"></i></i></a>
 
-    <div class="row">
+                                    </li>
 
-        <!-- LOCAL INFORMATION -->
-        <div class="col-sm-6" class="hide">
-            <div class="well" class="hide">
-                <h3><span class="hide" class="fa fa-user"></span> Local</h3>
+                                    <li class="nav-item">
+                                        <img id="logo" src="logo.png">
 
-                <% if (user.local.email) { %>
-                    <p>
-                        <strong>id</strong>: <%= user._id %><br>
-                        <strong>email</strong>: <%= user.local.email %><br>
-                        <strong>password</strong>: <%= user.local.password %>
-                    </p>
+                                    </li>
 
-                    <a href="/unlink/local" class="btn btn-default">Unlink</a>
-                <% } else { %>
-                    <a href="/connect/local" class="btn btn-default">Connect Local</a>
-                <% } %>
+                                    </li>
 
+
+                                </div>
+
+                            </div>
+
+                        </ul>
+                </div>
+                </nav>
             </div>
         </div>
-        <div class="col-sm-6">
-          <h3>Posts</h3>
-          <ul class="messages">
-          <% for(var i=0; i<posts.length; i++) {%>
-            <li class="message">
-              <a href="/post/<%= posts[i]._id %>">
-                <h4><%= posts[i].caption %></h4>
-                <img src="<%= posts[i].img %>" alt="">
-              
-              </a>  
-              
-            </li>
-          <% } %>
-          </ul>
 
-          <h2>Make A Post</h2>
+
+
+        <div class="column" id="boxshadow">
+
+            <h1 class="glow" id="mine"> My Profile </h1>
+
+            <section class="boxshadow">
+                <div id="play">
+                    <div id="text">
+                        <h2 class="glitch" data-text="Bookmarked Posts" class="mark"> Bookmarked Posts</h2>
+                    </div>
+                </div>
+
+
+                <% for(var i=0; i<bookmarks.length; i++) {%>
+
+
+                    <li class="message">
+                        <section class="middle">
+                            <div class="card-mb-3" style="max-width: 550px;" id="plant" id="contains">
+                                <div class="row no-gutters">
+                                    <div class="col-md-4">
+                                        <img src="data:image/<%=bookmarks[i].img.contentType%>;base64,
+                            <%=bookmarks[i].img.data.toString('base64')%>" class="card-img" alt="..." id="img">
+                                    </div>
+                                    <div class="col-md-8">
+                                        <div class="card-body">
+
+                                            <h5 class="card-title" id="thick">
+                                                <%= bookmarks[i].caption %>
+                                            </h5>
+                                            <p class="card-text">This is a wider card with supporting text below as a
+                                                natural lead-in to additional content. This content is a little bit
+                                                longer.</p>
+
+
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+
+                    </li>
+                    <% } %>
+            </section>
+        </div>
+        </div>
+
+    </section>
+
+    <section class="makepost">
+
+        <h2 id="light">Upload A Post Here</h2>
         <% if (user.local.email) { %>
-          <form  action="/makePost" method="POST" enctype="multipart/form-data">
-            <input type="text" name="address" placeholder="address" id="enterLocation">
-            <input type="text" name="caption" placeholder="caption" id="caption">
-            <input type="file" name="file-to-upload" id="photo">
-            <button id="submit" type="submit">Submit</button>
-          </form>
-        </div>
-        <% } %>
+            <form action="/makePost" method="POST" enctype="multipart/form-data">
+                <input type="text" name="address" placeholder="address" id="enterLocation">
+                <input type="text" name="caption" placeholder="caption" id="caption">
+                <input type="file" name="file-to-upload" id="photo">
+                <button id="submit" type="submit">Submit</button>
 
-        <h1 class="center"> Bookmarked Posts</h1>
-        <ul class="messages">
-        <div class="card-body">
-          <% for(var i=0; i<bookmarks.length; i++) {%>
-            <li class="messages">
-            
-                <h4><%= bookmarks[i].caption %></h4>
-                <img src="data:image/<%=bookmarks[i].img.contentType%>;base64,
-                <%=bookmarks[i].img.data.toString('base64')%>" class="card-img" alt="..." id="img">
-                
-                
-              
-              </a>  
-            
-            </li>
-          <% } %>
-          </ul>
-        </div>
+            </form>
+            </div>
+            <% } %>
+    </section>
 
 
-        
-
-        
-</div>
-
-<script type="text/javascript"
-src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB0vrbaqfRBzXOFbEGmsNORTWRdG3zNFBI&libraries=places">
-</script>
-
-<script src="main.js"></script>
+    <script src="main.js"></script>
 
 </body>
+
 </html>

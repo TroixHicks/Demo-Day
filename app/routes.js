@@ -131,7 +131,8 @@ module.exports = function (app, passport, db, multer, ObjectId) {
     db.collection('posts').save({ 
       caption: req.body.caption, 
       desc: req.body.desc, 
-      img: obj, 
+      img: obj,
+      likes: 0,  
       address: req.body.address,
       postedBy: user, 
       comments: [] }
@@ -142,6 +143,21 @@ module.exports = function (app, passport, db, multer, ObjectId) {
       })
   })
 
+  app.put('/liked', (req, res) => {
+    let postId= ObjectId(req.body.postId)
+    db.collection('posts')
+    .findOneAndUpdate({_id: postId}, {
+      $set: {
+        likes: req.body.likes + 1
+      }
+    }, {
+      sort: {_id: -1},
+      upsert: true
+    }, (err, result) => {
+      if (err) return res.send(err)
+      res.send(result)
+    })
+  })
   app.post('/post/comments/:id', isLoggedIn, function (req, res) {
     let user = req.user._id
     let id = req.params.id

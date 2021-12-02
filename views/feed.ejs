@@ -14,7 +14,19 @@
 
 </head>
 <body>
+	<section class="border"
+
+		<div class="container">
+			
+			<div class="glow" id="move">The Artist Lounge</div>
+			<p class="virgil">"This resource was born as I was working to summarize answers to all my most frequently asked questions. The goal of this resource is to uplift more than a few. I will continue to open doors for those that come from the fringe and help them be awarded opportunities usually left for the center." -Virgil Abloh</p>
+		</div>
+			<div class="scanlines"></div>
+		</div>
+	</section>
+
   <div class="container">
+
 
 
       </div>
@@ -40,6 +52,7 @@
 			<ul class="toplinks">
 				<li class="nav-item">
 				<a class="nav-link active" href="index.html">Home</a>
+
 				</li>
 				<li class="nav-item">
 				<a class="nav-link" href="post.html">My Posts</a>
@@ -47,6 +60,7 @@
 				<li class="nav-item">
 				<a class="nav-link" href="author.html"><span class="align-middle">Profile Name</span></a>
 				</li>
+				
 				<li class="nav-item dropdown">
 
 				</li>
@@ -58,115 +72,101 @@
     </nav>
     <main role="main">
 
+	
 
     <div class="mt-4 mb-5">
     <div class="container mb-4">
-    	<h1 class="title">The Artist Lounge</h1>
     	<div class="row">
     		<nav class="navbar navbar-expand-lg navbar-light bg-white pl-2 pr-2">
-    		<span class="navbar-toggler-icon"></span>
     		</button>
     			<ul class="navbar-nav">
-    				<li class="nav-item">
-    				<a class="newset" href="#">Home</a>
-    				</li>
-    				<li class="nav-item">
-    				<a class="newset" href="/profile">My Feed</a>
-    				</li>
-					<li class="nav-item">
-						<a class="newset" href="/map">Map</a>
-						</li>
-    				<li class="nav-item">
-    				<a class="newset" href="#">Influences</a>
-    				</li>
-    				<li class="nav-item">
-    				<a class="newset" href="#">Influential Artists</a>
-    				</li>
-    				<li class="nav-item dropdown">
-    				<!-- <a class="nav-link dropdown-toggle" href="http://example.com" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">More</a>
-    				<div class="dropdown-menu shadow-lg" aria-labelledby="dropdown01">
-    					<a class="dropdown-item" href="#">Black Studies</a>
-    					<a class="dropdown-item" href="#">Contemporary Artists</a>
-						<a class="dropdown-item" href="#">Resources</a>
+					<div id="app">
+							<div id="wrapper">
+							<li class="nav-item">
+							<a class="newset"  href=/feed><i class="fas fa-home"></i></a>
+							
+							</li>
+							<li class="nav-item">
+							<a class="newset" href="/profile"><i class="fas fa-camera-retro"></i></a>
+							</li>
+							<li class="nav-item">
+								<a class="newset" href="/map"><i class="fas fa-map-marker-alt"></i></i></a>
+								
+							</li>
+							<li class="nav-item">
+								<img id="logo" src="logo.png">
+								
+							</li>
+							<li class="nav-item">
+								<a href="/logout" class="logout">Logout</a>
+							</li>
 
-    				</div> -->
-    				</li>
+							</li>
+							<li class="nav-item dropdown">
+							<!-- <a class="nav-link dropdown-toggle" href="http://example.com" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">More</a>
+							<div class="dropdown-menu shadow-lg" aria-labelledby="dropdown01">
+								<a class="dropdown-item" href="#">Black Studies</a>
+								<a class="dropdown-item" href="#">Contemporary Artists</a>
+								<a class="dropdown-item" href="#">Resources</a>
 
+							</div> -->
+							</li>
+						</div>
+					</div>
 
     			</ul>
     		</div>
     		</nav>
     	</div>
     </div>
-    <!-- <div class="row"> -->
+
+		
 
 
+	
+	<div class="column" id="boxshadow">
+		
+		<section class="boxshadow">
 
+			<% for(var i=0; i<posts.length; i++) {%>
 
+				
+		   <li class="message">
 
-		<div class="column" id="boxshadow">
-	       <section class="boxshadow">
-			   <% for(var i=0; i<posts.length; i++) {%>
-              <li class="message">
-                <a  href="/post/<%= posts[i]._id %>">
-                  <!-- <h4><%= posts[i].caption %></h4> -->
+			
+			 <a  href="/post/<%= posts[i]._id %>">
+			   <!-- <h4><%= posts[i].caption %></h4> -->
+			   <a class="hide" href="/page/<%= posts[i].postedBy %>"> <%= posts[i].postedBy %></a>
+			 </a>
+			 <section class="middle">
 
-                  <a class="hide" href="/page/<%= posts[i].postedBy %>"> <%= posts[i].postedBy %></a>
-                </a>
-
-				<section class="middle">
-					<div class="card-mb-3" style="max-width: 550px;" id="contains">
-					<div class="row no-gutters">
-						<div class="col-md-4">
-						<img src="data:image/<%=posts[i].img.contentType%>;base64,
-						<%=posts[i].img.data.toString('base64')%>" class="card-img" alt="..." id="img">
-						</div>
-						<div class="col-md-8">
-						<div class="card-body">
-							<i data-id="<%=posts[i]._id%>" class="fas fa-bookmark"></i>
-							<h5 class="card-title"><%= posts[i].caption %></h5>
-							<p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-							
-							
-							
-						</div>
-						</div>
-					</div>
-					</div>
-				</section>
-
-
-
-
-
-                <!-- <% if (user.local.email) { %>
-                  <form action="/post/comments/<%= posts[i]._id %>" method="POST">
-                    <input type="text" placeholder="comment" name="comment">
-                    <button type="submit">Submit</button>
-                  </form>
-                <% } %>
-
-                <ul>
-                  <% const currentPost = posts[i]%>
-                  <% for(var j=0; j<currentPost.comments.length; j++) {%>
-                  <li class="comments">
-                    <span><%=currentPost.comments[j].comment%></span>
-                  </li>
-
-                <% } %>
-                </ul> -->
-
-              </li>
-
-            <% } %>
-		  </section>
-		</div>
-		  <a href="/logout" class="btn btn-default btn-sm">Logout</a>
-
-
-
-
-
+				
+				 <div class="card-mb-3" style="max-width: 550px;" id="contains">
+				 <div class="row no-gutters">
+					 <div class="col-md-4">
+					 <img src="data:image/<%=posts[i].img.contentType%>;base64,
+					 <%=posts[i].img.data.toString('base64')%>" class="card-img" alt="..." id="img">
+					 </div>
+					 <div class="col-md-8">
+					 <div class="card-body">
+						 <i data-id="<%=posts[i]._id%>" class="fas fa-bookmark"></i>
+						 <i class="fas fa-heart"></i> <span class="like"><%= posts[i].likes %></span>
+						 <h5 class="card-title"><%= posts[i].caption %></h5>
+						 <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+						 
+						 
+						 
+					 </div>
+					 </div>
+				 </div>
+				 </div>
+			 </section>
+			
+		   </li>
+		 <% } %>
+	   </section>
+	 </div>
+	   
 
 
 
