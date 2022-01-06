@@ -1,13 +1,2 @@
-## Installation
 
-1. Clone repo
-2. run `npm install`
-
-## Usage
-
-1. run `node server.js`
-2. Navigate to `localhost:8080`
-
-## Credit
-
-Modified from Scotch.io's auth tutorial
+<img width="1435" alt="Screen Shot 2022-01-06 at 2 34 32 PM" src="https://user-images.githubusercontent.com/88952205/148440670-d045ff82-c0dc-4161-8918-36697dcf64a1.png">
